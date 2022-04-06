@@ -7,7 +7,7 @@ using namespace std;
 void RodarJogo(TListaJogador &j, TListaCarta &b, int quantidade_jogadores){
     int verificar = 0;
    
-    while(verificar <= quantidade_jogadores ){
+    while(verificar != quantidade_jogadores ){
         TElementoJogador * nav = j.inicio;
         while(nav->proximo = nullptr){
             int soma_mao = 0;
