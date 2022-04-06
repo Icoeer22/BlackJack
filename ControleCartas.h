@@ -27,7 +27,7 @@ void Inicializar_Lista_Cartas(TListaCarta &l){
 }
 
 void Inserir_Posicao_LCartas(TListaCarta &l,int pos, TCarta c){
-     if (l.quantidade >= MAX){
+     if (l.quantidade > MAX){
         throw "List Overflow";
     }
     if (pos > l.quantidade || pos < 0){
@@ -50,7 +50,7 @@ void Inserir_Final_LCartas(TListaCarta &l, TCarta c) {
 }
 
 void Remover_Posicao_LCartas(TListaCarta &l, int pos) {
-  if (l.quantidade >= MAX) {
+  if (l.quantidade > MAX) {
     throw "List Overflow";
   }
   if (pos > l.quantidade || pos < 0) {
@@ -83,5 +83,11 @@ void Imprimir_Lista_LCartas(TListaCarta &l) {
   }
 }
 
+TCarta Obter_Carta_Posicao(TListaCarta &l, int pos){
+    if(pos > l.quantidade || pos < 0){
+        throw "Invalid Index";
+    }
+    return l.v[pos];
+}
 
 #endif
