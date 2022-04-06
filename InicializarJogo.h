@@ -7,9 +7,9 @@ using namespace std;
 void RodarJogo(TListaJogador &j, TListaCarta &b, int quantidade_jogadores){
     int verificar = 0;
    
-    while(verificar != quantidade_jogadores ){
+    //while(verificar != quantidade_jogadores ){
         TElementoJogador * nav = j.inicio;
-        while(nav->proximo = nullptr){
+        while(nav != nullptr){
             int soma_mao = 0;
             for(int i = 0; i < nav->Jogador.MaoJogador.quantidade; i++){
                 soma_mao = soma_mao + nav->Jogador.MaoJogador.v[i].valor;
@@ -27,7 +27,7 @@ void RodarJogo(TListaJogador &j, TListaCarta &b, int quantidade_jogadores){
             nav= nav->proximo;
         }
             
-    }
+    //}
     DepurarLJogadores(j);
 }
 
