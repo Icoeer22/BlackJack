@@ -97,9 +97,9 @@ bool Contem_Item_LJogadores(TListaJogador &j, string nomeJogador){
     if(j.inicio == nullptr){
         return false;
     }
-    TElementoJogador * nav = l.inicio;
+    TElementoJogador * nav = j.inicio;
     while(nav->proximo != nullptr){
-        if (nav->nome == nomeJogador){
+        if (nav->Jogador.nome == nomeJogador){
             return true;
         } else {
             nav = nav->proximo;
@@ -114,7 +114,7 @@ string Obter_Jogador_Posicao(TListaJogador &j, int pos){
     for (TElementoJogador * nav = j.inicio; nav->proximo != nullptr; nav = nav->proximo){
         cont = cont+1;
     }
-    if (l.inicio == nullptr){
+    if (j.inicio == nullptr){
         return "Lista vazia";
     }
     else if (pos > cont || pos < 0 ){
@@ -124,7 +124,7 @@ string Obter_Jogador_Posicao(TListaJogador &j, int pos){
         TElementoJogador * nav = j.inicio;
         while(nav != nullptr){
             if(contador == pos){
-                return nav->nome;
+                return nav->Jogador.nome;
             }
             contador++;
             nav = nav->proximo;
@@ -135,13 +135,13 @@ string Obter_Jogador_Posicao(TListaJogador &j, int pos){
 
 int Descobrir_Indice_LJogador(TListaJogador &j, string nomeJogador){
 
-    if (l.inicio == nullptr){
+    if (j.inicio == nullptr){
         return -1;
     } else {
         int contador = 0;
         TElementoJogador * nav = j.inicio;
         while(nav != nullptr){
-            if(nav->nome == nomeJogador){
+            if(nav->Jogador.nome == nomeJogador){
                 return contador;
             }
             contador++;
@@ -151,12 +151,12 @@ int Descobrir_Indice_LJogador(TListaJogador &j, string nomeJogador){
     return -1;
 }
 
-void DepurarLJogadores(TListaJogador l,int quantidade_cartas){
+void DepurarLJogadores(TListaJogador l){
   cout << "Depurando lista encadeada - Inicio: " << l.inicio << endl;
     int i = 0;
     for(TElementoJogador * nav = l.inicio; nav != nullptr; nav= nav->proximo){
         cout << "&: " << nav << "- Lista [ " << i++ << " ]: " << nav->Jogador.nome << "  ";
-        for (int j = 0; j < quantidade_cartas; j++){
+        for (int j = 0; j < nav->Jogador.MaoJogador.quantidade; j++){
             cout << nav->Jogador.MaoJogador.v[j] << "\t"; 
         }
         cout << endl;

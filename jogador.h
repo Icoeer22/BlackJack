@@ -19,6 +19,8 @@ TListaJogador Criar_Jogadores(int quantidade_jogadores){
     return Jogadores;
 }
 
+
+
 void Distribuir_Cartas(TListaCarta &b, TListaJogador &j){
     TElementoJogador * nav = j.inicio;
     while (nav != nullptr){
@@ -28,7 +30,6 @@ void Distribuir_Cartas(TListaCarta &b, TListaJogador &j){
             Inserir_Final_LCartas(nav->Jogador.MaoJogador, CartaAuxiliar);
         }
         nav = nav->proximo;
-        cout << "passou" << endl;
     }
 }
 
