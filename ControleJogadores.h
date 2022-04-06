@@ -93,6 +93,64 @@ void Remover_Fim_LJogadores(TListaJogador &l){
   }
 }
 
+bool Contem_Item_LJogadores(TListaJogador &j, string nomeJogador){
+    if(j.inicio == nullptr){
+        return false;
+    }
+    TElementoJogador * nav = l.inicio;
+    while(nav->proximo != nullptr){
+        if (nav->nome == nomeJogador){
+            return true;
+        } else {
+            nav = nav->proximo;
+        }
+    }
+
+    return false;
+}
+
+string Obter_Jogador_Posicao(TListaJogador &j, int pos){
+    int cont = 0;
+    for (TElementoJogador * nav = j.inicio; nav->proximo != nullptr; nav = nav->proximo){
+        cont = cont+1;
+    }
+    if (l.inicio == nullptr){
+        return "Lista vazia";
+    }
+    else if (pos > cont || pos < 0 ){
+        return "Posição invalida";
+    } else {
+        int contador = 0;
+        TElementoJogador * nav = j.inicio;
+        while(nav != nullptr){
+            if(contador == pos){
+                return nav->nome;
+            }
+            contador++;
+            nav = nav->proximo;
+        }
+    }
+    return "Item não encontrado";
+}
+
+int Descobrir_Indice_LJogador(TListaJogador &j, string nomeJogador){
+
+    if (l.inicio == nullptr){
+        return -1;
+    } else {
+        int contador = 0;
+        TElementoJogador * nav = j.inicio;
+        while(nav != nullptr){
+            if(nav->nome == nomeJogador){
+                return contador;
+            }
+            contador++;
+            nav = nav->proximo;
+        }
+    }
+    return -1;
+}
+
 void DepurarLJogadores(TListaJogador l,int quantidade_cartas){
   cout << "Depurando lista encadeada - Inicio: " << l.inicio << endl;
     int i = 0;

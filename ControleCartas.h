@@ -90,4 +90,26 @@ TCarta Obter_Carta_Posicao(TListaCarta &l, int pos){
     return l.v[pos];
 }
 
+int Descobrir_Indice_Carta(TListaCarta &l, TCarta carta){
+    for(int i = 0 ; i < 104; i++){
+        if(carta.valor == l.v[i].valor && carta.naipe == l.v[i].naipe){
+            cout << endl << endl;
+            return i;
+        }
+    }
+    cout << endl << endl;
+    return -1;
+}
+
+bool Contem_Item_LCarta(TListaCarta &l, TCarta item){
+    for (int i = 0; i < 104; i++) {
+    if (item.valor == l.v[i].valor && item.naipe == l.v[i].naipe) {
+      cout << endl << endl;
+      return true;
+    }
+  }
+  cout << endl << endl;
+  return false;
+}
+
 #endif
