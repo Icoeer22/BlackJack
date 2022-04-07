@@ -13,6 +13,7 @@ TListaJogador Criar_Jogadores(int quantidade_jogadores){
     for (int i = 0 ; i < quantidade_jogadores; i ++){
         Pessoa Jogador;
         Jogador.nome = "Player" + to_string(i+1);
+        Jogador.SomaCartas = 0;
         Inicializar_Lista_Cartas(Jogador.MaoJogador);
         Inserir_Fim_LJogadores(Jogadores, Jogador);
     }
@@ -24,10 +25,11 @@ TListaJogador Criar_Jogadores(int quantidade_jogadores){
 void Distribuir_Cartas(TListaCarta &b, TListaJogador &j){
     TElementoJogador * nav = j.inicio;
     while (nav != nullptr){
-        for(int i = 0 ; i< 2 ; i++){
+        for(int i = 0 ; i < 2 ; i++){
             TCarta CartaAuxiliar = Obter_Carta_Posicao(b,b.quantidade -1);
             Remover_Final_LCarta(b);
             Inserir_Final_LCartas(nav->Jogador.MaoJogador, CartaAuxiliar);
+            nav->Jogador.SomaCartas += CartaAuxiliar.valor;
         }
         nav = nav->proximo;
     }

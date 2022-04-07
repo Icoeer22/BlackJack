@@ -13,7 +13,10 @@ TListaCarta Criar_Baralho(){
     for (int i = 0; i < 104; i++) {
     TCarta carta;
     carta.naipe = i / 26;
-    carta.valor = i % 13;
+    carta.valor = (i % 13) + 1;
+    if (carta.valor > 10){
+      carta.valor = 10;
+    }
     Inserir_Final_LCartas(Baralho, carta);
   }
   return Baralho;

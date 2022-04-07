@@ -9,6 +9,7 @@ using namespace std;
 struct Pessoa{
     string nome;
     TListaCarta MaoJogador;
+    int SomaCartas;
 };
 
 struct TElementoJogador{
@@ -93,6 +94,8 @@ void Remover_Fim_LJogadores(TListaJogador &l){
   }
 }
 
+
+
 bool Contem_Item_LJogadores(TListaJogador &j, string nomeJogador){
     if(j.inicio == nullptr){
         return false;
@@ -151,14 +154,29 @@ int Descobrir_Indice_LJogador(TListaJogador &j, string nomeJogador){
     return -1;
 }
 
+int Descobrir_Quantidade_Jogadores(TListaJogador &j){
+    int contador = 0;
+
+    if (j.inicio == nullptr){
+        return -1;
+    } else {
+        TElementoJogador * nav = j.inicio;
+        while(nav != nullptr){
+            contador++;
+            nav = nav->proximo;
+        }
+    }
+    return contador;
+}
+
 void DepurarLJogadores(TListaJogador l){
-  cout << "Depurando lista encadeada - Inicio: " << l.inicio << endl;
     int i = 0;
     for(TElementoJogador * nav = l.inicio; nav != nullptr; nav= nav->proximo){
-        cout << "&: " << nav << "- Lista [ " << i++ << " ]: " << nav->Jogador.nome << "  ";
+        cout << "O jogador " << nav->Jogador.nome << " Possui as cartas:  ";
         for (int j = 0; j < nav->Jogador.MaoJogador.quantidade; j++){
-            cout << nav->Jogador.MaoJogador.v[j] << "\t"; 
+            cout << endl << nav->Jogador.MaoJogador.v[j]; 
         }
+        cout << "\nTotalizando: " << nav->Jogador.SomaCartas << endl;
         cout << endl;
     }
 }
