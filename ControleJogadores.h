@@ -92,6 +92,10 @@ void Remover_Fim_LJogadores(TListaJogador &l){
   }
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> b3c6bb31c14095ee5063bd89de82db986f4ddc1a
 void Remover_Inicio_LJogadores(TListaJogador &j){
     if(j.inicio == nullptr){
         cout << "Não é possivel remover nenhum item";
@@ -123,7 +127,11 @@ void Remover_Posicao_LJogadores(TListaJogador &j, int pos){
         }
         else{
             TElementoJogador * nav = j.inicio;
+<<<<<<< HEAD
             for(int i = 0; i < pos - 1; i++){
+=======
+            for(int i = 0; i < pos; i++){
+>>>>>>> b3c6bb31c14095ee5063bd89de82db986f4ddc1a
                 nav = nav->proximo;
             }
             TElementoJogador *Apagar = nav->proximo;
@@ -133,6 +141,12 @@ void Remover_Posicao_LJogadores(TListaJogador &j, int pos){
     }
 
 }
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> 80ed5c5f49cbfcd7e2c6972f2ccefb10c1475fd3
+>>>>>>> b3c6bb31c14095ee5063bd89de82db986f4ddc1a
 
 bool Contem_Item_LJogadores(TListaJogador &j, string nomeJogador){
     if(j.inicio == nullptr){
@@ -193,14 +207,29 @@ int Descobrir_Indice_LJogador(TListaJogador &j, string nomeJogador){
     return -1;
 }
 
+<<<<<<< HEAD
 
 
 int Descobrir_Quantidade_Jogadores(TListaJogador &j){
     int contador = 0;
+=======
+int Descobrir_Quantidade_Jogadores(TListaJogador &j){
+    int contador = 0;
+<<<<<<< HEAD
+>>>>>>> b3c6bb31c14095ee5063bd89de82db986f4ddc1a
     if (j.inicio == nullptr){
         return -1;
     } 
     else {
+<<<<<<< HEAD
+=======
+=======
+
+    if (j.inicio == nullptr){
+        return -1;
+    } else {
+>>>>>>> 80ed5c5f49cbfcd7e2c6972f2ccefb10c1475fd3
+>>>>>>> b3c6bb31c14095ee5063bd89de82db986f4ddc1a
         TElementoJogador * nav = j.inicio;
         while(nav != nullptr){
             contador++;
@@ -213,7 +242,10 @@ int Descobrir_Quantidade_Jogadores(TListaJogador &j){
 void DepurarLJogadores(TListaJogador l){
     int i = 0;
     for(TElementoJogador * nav = l.inicio; nav != nullptr; nav= nav->proximo){
+<<<<<<< HEAD
         cout << "-----------------------------------------------------------------------\n\n";
+=======
+>>>>>>> b3c6bb31c14095ee5063bd89de82db986f4ddc1a
         cout << "O jogador " << nav->Jogador.nome << " Possui as cartas:  ";
         for (int j = 0; j < nav->Jogador.MaoJogador.quantidade; j++){
             cout << endl << nav->Jogador.MaoJogador.v[j]; 

@@ -12,7 +12,15 @@ TListaJogador Criar_Jogadores(int quantidade_jogadores){
     Inicializar_Lista_Jogadores(Jogadores);
     for (int i = 0 ; i < quantidade_jogadores; i ++){
         Pessoa Jogador;
+<<<<<<< HEAD
         Jogador.nome = "Player " + to_string(i);
+=======
+<<<<<<< HEAD
+        Jogador.nome = "Player " + to_string(i);
+=======
+        Jogador.nome = "Player" + to_string(i+1);
+>>>>>>> 80ed5c5f49cbfcd7e2c6972f2ccefb10c1475fd3
+>>>>>>> b3c6bb31c14095ee5063bd89de82db986f4ddc1a
         Jogador.SomaCartas = 0;
         Inicializar_Lista_Cartas(Jogador.MaoJogador);
         Inserir_Fim_LJogadores(Jogadores, Jogador);

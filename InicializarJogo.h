@@ -3,6 +3,7 @@
 #include "jogador.h"
 using namespace std;
 
+<<<<<<< HEAD
 int verificar_vitoria(TListaJogador &j){
     TElementoJogador * nav = j.inicio;
     bool ganhou = false;
@@ -34,6 +35,27 @@ int verificar_vitoria(TListaJogador &j){
     system("cls");
 
 
+=======
+<<<<<<< HEAD
+int verificar_vitoria(TListaJogador &j){
+    TElementoJogador * nav = j.inicio;
+    while(nav != nullptr){
+        if(nav->Jogador.SomaCartas == 21){
+            cout << "O jogador " << nav->Jogador.nome << " Ganhou!" << endl; 
+        } 
+        else{ 
+            if(nav->Jogador.SomaCartas > 21){
+                int indice_jogador = Descobrir_Indice_LJogador(j, nav->Jogador.nome);
+                Remover_Posicao_LJogadores(j,indice_jogador);
+                system("pause");
+                system("cls");
+            }
+        }
+        nav= nav->proximo;
+    }
+    
+    
+>>>>>>> b3c6bb31c14095ee5063bd89de82db986f4ddc1a
 
     if(j.inicio == NULL){
         cout << "Não há vencedor";
@@ -41,6 +63,7 @@ int verificar_vitoria(TListaJogador &j){
         system("cls");
         return 0;
     }
+<<<<<<< HEAD
     
 }
 
@@ -89,3 +112,106 @@ void RodarJogo(TListaJogador &j, TListaCarta &b, int quantidade_jogadores){
     verificar_vitoria(j);
     DepurarLJogadores(j);
 }
+=======
+
+}
+
+
+void Jogador_Jogando(TElementoJogador * &nav, TListaCarta &b){
+    TCarta CartaAuxiliar = Obter_Carta_Posicao(b,b.quantidade -1);
+    Remover_Final_LCarta(b);
+    Inserir_Final_LCartas(nav->Jogador.MaoJogador, CartaAuxiliar);
+    nav->Jogador.SomaCartas += CartaAuxiliar.valor;
+    cout << "-----------------------------------------------------------------------\n";
+    cout << "Jogador " << nav->Jogador.nome << " recebeu: " << nav->Jogador.MaoJogador << endl << endl;
+}
+
+void RodarJogo(TListaJogador &j, TListaCarta &b, int quantidade_jogadores){
+    bool verificar = false;
+
+    //while(verificar != quantidade_jogadores ){
+        TElementoJogador * nav = j.inicio;
+        int contador = 0;
+        int agressividade = 0;
+        while(quantidade_jogadores > 0){
+            contador++;
+            cout << "\n-----------------------------------------------------------------------\n\n";
+            DepurarLJogadores(j);
+            cout << "-----------------------------------------------------------------------\n";
+
+            system("pause");
+            system("cls");
+
+
+            while(nav != nullptr){
+                int Indice_Jogador = Descobrir_Indice_LJogador(j, nav->Jogador.nome);
+                if(Indice_Jogador % 2 == 0){
+                    agressividade = 16;
+                } else {
+                    agressividade = 19;
+                }
+
+                if (nav->Jogador.SomaCartas < agressividade){
+                    Jogador_Jogando(nav, b);
+                    quantidade_jogadores = Descobrir_Quantidade_Jogadores(j);
+                    } else {
+                    quantidade_jogadores--;
+                }
+                nav = nav->proximo;
+            } 
+            nav = j.inicio;
+
+        }  
+    verificar_vitoria(j);
+    DepurarLJogadores(j);
+}
+=======
+
+
+void RodarJogo(TListaJogador &j, TListaCarta &b, int quantidade_jogadores){
+    bool verificar = false;
+
+    //while(verificar != quantidade_jogadores ){
+        TElementoJogador * nav = j.inicio;
+        cout << "-----------------------------------------------------------------------\n";
+        DepurarLJogadores(j);
+        cout << "-----------------------------------------------------------------------\n";
+        system("pause");
+        system("cls");
+        int contador = 0;
+         
+        while(quantidade_jogadores > 0){
+            contador++;
+            cout << "-----------------------------------------------------------------------\n";
+            cout << "Rodada" << contador << endl;
+            while(nav != nullptr){
+                    if (nav->Jogador.SomaCartas < 17){
+                        TCarta CartaAuxiliar = Obter_Carta_Posicao(b,b.quantidade -1);
+                        Remover_Final_LCarta(b);
+                        Inserir_Final_LCartas(nav->Jogador.MaoJogador, CartaAuxiliar);
+                        nav->Jogador.SomaCartas += CartaAuxiliar.valor;
+                        cout << "-----------------------------------------------------------------------\n";
+                        cout << "Jogador " << nav->Jogador.nome << " recebeu: " << nav->Jogador.MaoJogador << endl << endl;
+                        quantidade_jogadores = Descobrir_Quantidade_Jogadores(j);
+                    }   else {
+                        quantidade_jogadores--;
+
+                    }
+                nav = nav->proximo;
+            }
+            nav = j.inicio;
+            cout << "-----------------------------------------------------------------------\n";
+            DepurarLJogadores(j);
+            cout << "-----------------------------------------------------------------------\n";
+
+            system("pause");
+            system("cls");
+        }  
+
+}
+
+void verificar_vitoria(){
+
+}
+>>>>>>> 80ed5c5f49cbfcd7e2c6972f2ccefb10c1475fd3
+>>>>>>> b3c6bb31c14095ee5063bd89de82db986f4ddc1a
