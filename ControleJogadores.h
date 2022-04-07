@@ -92,6 +92,7 @@ void Remover_Fim_LJogadores(TListaJogador &l){
   }
 }
 
+<<<<<<< HEAD
 void Remover_Inicio_LJogadores(TListaJogador &j){
     if(j.inicio == nullptr){
         cout << "Não é possivel remover nenhum item";
@@ -133,6 +134,9 @@ void Remover_Posicao_LJogadores(TListaJogador &j, int pos){
     }
 
 }
+=======
+
+>>>>>>> 80ed5c5f49cbfcd7e2c6972f2ccefb10c1475fd3
 
 bool Contem_Item_LJogadores(TListaJogador &j, string nomeJogador){
     if(j.inicio == nullptr){
@@ -193,10 +197,17 @@ int Descobrir_Indice_LJogador(TListaJogador &j, string nomeJogador){
 
 int Descobrir_Quantidade_Jogadores(TListaJogador &j){
     int contador = 0;
+<<<<<<< HEAD
     if (j.inicio == nullptr){
         return -1;
     } 
     else {
+=======
+
+    if (j.inicio == nullptr){
+        return -1;
+    } else {
+>>>>>>> 80ed5c5f49cbfcd7e2c6972f2ccefb10c1475fd3
         TElementoJogador * nav = j.inicio;
         while(nav != nullptr){
             contador++;
