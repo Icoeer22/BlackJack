@@ -18,17 +18,24 @@ ostream &operator<<(ostream &os, TCarta c) {
 }
 
 struct TListaCarta{
-    TCarta v[MAX];
-    int quantidade;
+  TCarta v[MAX];
+  int quantidade;
 };
 
+
+ostream &operator<<(ostream &os, TListaCarta c) {
+  os << "Carta: {" << c.v->valor << " De " << NAIPES[c.v->naipe] << "}";
+  return os;
+}
+
+
 void Inicializar_Lista_Cartas(TListaCarta &l){
-    l.quantidade = 0;
+  l.quantidade = 0;
 }
 
 void Inserir_Posicao_LCartas(TListaCarta &l,int pos, TCarta c){
-     if (l.quantidade > MAX){
-        throw "List Overflow";
+  if (l.quantidade > MAX){
+    throw "List Overflow";
     }
     if (pos > l.quantidade || pos < 0){
         throw  "Invalid Index";
@@ -36,7 +43,6 @@ void Inserir_Posicao_LCartas(TListaCarta &l,int pos, TCarta c){
     for (int i = l.quantidade; i > pos; i--){
         l.v[i] = l.v[i-1];
     }
-
     l.v[pos] = c;
     l.quantidade++;
 }
@@ -91,18 +97,18 @@ TCarta Obter_Carta_Posicao(TListaCarta &l, int pos){
 }
 
 int Descobrir_Indice_Carta(TListaCarta &l, TCarta carta){
-    for(int i = 0 ; i < 104; i++){
-        if(carta.valor == l.v[i].valor && carta.naipe == l.v[i].naipe){
-            cout << endl << endl;
-            return i;
-        }
+  for(int i = 0 ; i < 104; i++){
+    if(carta.valor == l.v[i].valor && carta.naipe == l.v[i].naipe){
+      cout << endl << endl;
+      return i;
     }
-    cout << endl << endl;
-    return -1;
+  }
+  cout << endl << endl;
+  return -1;
 }
 
 bool Contem_Item_LCarta(TListaCarta &l, TCarta item){
-    for (int i = 0; i < 104; i++) {
+  for (int i = 0; i < 104; i++) {
     if (item.valor == l.v[i].valor && item.naipe == l.v[i].naipe) {
       cout << endl << endl;
       return true;

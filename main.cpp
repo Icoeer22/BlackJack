@@ -6,8 +6,14 @@
 using namespace std;
 
 int main(){
-    Inicializar_Jogo();
-    
+   TListaCarta Baralho_Mesa;
+    Baralho_Mesa = Criar_Baralho();
+    Embaralhar(Baralho_Mesa);
+    int quantidade_jogadores = 4;
+    TListaJogador Jogadores;
+    Jogadores = Criar_Jogadores(quantidade_jogadores);
+    Distribuir_Cartas(Baralho_Mesa, Jogadores);
+    RodarJogo(Jogadores,Baralho_Mesa, quantidade_jogadores);
    
 }
 

@@ -7,33 +7,33 @@ using namespace std;
 
 struct TElemento{
     int num;
-    TElemento * proximo;
-    TElemento * anterior;
+  TElemento * proximo;
+  TElemento * anterior;
 };
 
 struct TLista{
-    TElemento * inicio;
-    TElemento * fim;
+  TElemento * inicio;
+  TElemento * fim;
 };
 
 void Inicializar_Lista_LDE(TLista &l){
-    l.inicio = l.fim = nullptr;
+  l.inicio = l.fim = nullptr;
 }
 
 void Inserir_Inicio_LDE(TLista &l, int num){
-    TElemento * novo = new TElemento;
-    novo ->num = num;
-    novo->anterior = novo->proximo = nullptr;
-    if (l.inicio == nullptr){
-        l.inicio = novo;
-        l.fim = novo;
-    }
-    else{
-        TElemento * nav = l.inicio;
-        novo->proximo = l.inicio;
-        l.inicio = novo;
-        nav-> anterior = novo;
-    }
+  TElemento * novo = new TElemento;
+  novo ->num = num;
+  novo->anterior = novo->proximo = nullptr;
+  if (l.inicio == nullptr){
+    l.inicio = novo;
+    l.fim = novo;
+  }
+  else{
+    TElemento * nav = l.inicio;
+    novo->proximo = l.inicio;
+    l.inicio = novo;
+    nav-> anterior = novo;
+  }
 }
 
 void Inserir_Fim_LDE(TLista &l, int num){
@@ -115,10 +115,10 @@ void Remover_Posicao_LDE(TLista &l,int pos){
     cout << "Index invalido";
   }
   else{
-     TElemento * nav = l.inicio;
-     for(int i = 0; i != pos-1; i++){
-     nav=nav->proximo;
-   }
+    TElemento * nav = l.inicio;
+    for(int i = 0; i != pos-1; i++){
+      nav=nav->proximo;
+    }
     TElemento * Apagar  = nav->proximo;
     nav->proximo = Apagar->proximo;
     Apagar->proximo->anterior = nav;
