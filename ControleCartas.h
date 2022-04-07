@@ -22,6 +22,13 @@ struct TListaCarta{
     int quantidade;
 };
 
+
+ostream &operator<<(ostream &os, TListaCarta c) {
+  os << "Carta: {" << c.v->valor << " De " << NAIPES[c.v->naipe] << "}";
+  return os;
+}
+
+
 void Inicializar_Lista_Cartas(TListaCarta &l){
     l.quantidade = 0;
 }

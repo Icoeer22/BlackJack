@@ -9,12 +9,12 @@ using namespace std;
 struct Pessoa{
     string nome;
     TListaCarta MaoJogador;
+    int SomaCartas;
 };
 
 struct TElementoJogador{
     Pessoa Jogador;
     TElementoJogador *proximo;
-
 };
 
 struct TListaJogador{
@@ -54,7 +54,6 @@ void Inserir_Fim_LJogadores(TListaJogador &l, Pessoa j){
     TElementoJogador * novo = new TElementoJogador;
     novo->Jogador  = j;
     novo->proximo = nullptr;
-
     if (l.inicio == nullptr){
         l.inicio = novo;
     }
@@ -93,6 +92,48 @@ void Remover_Fim_LJogadores(TListaJogador &l){
   }
 }
 
+void Remover_Inicio_LJogadores(TListaJogador &j){
+    if(j.inicio == nullptr){
+        cout << "Não é possivel remover nenhum item";
+    }
+    else {
+       TElementoJogador * nav = j.inicio;
+       j.inicio = nav->proximo;
+       delete nav; 
+    }
+}
+
+void Remover_Posicao_LJogadores(TListaJogador &j, int pos){
+    int cont = 0;
+    for (TElementoJogador * nav = j.inicio; nav != nullptr; nav = nav->proximo){
+        cont = cont+1;
+    }
+    if (j.inicio == nullptr){
+        cout << "Não é possivel remover nenhum item";
+    }
+    else if(pos > cont || pos < 0 ){
+        cout << "Posição Invalida" << endl;
+    }
+    else{
+        if(pos == cont){
+            Remover_Fim_LJogadores(j);
+        }
+        else if(pos == 0){
+            Remover_Inicio_LJogadores(j);
+        }
+        else{
+            TElementoJogador * nav = j.inicio;
+            for(int i = 0; i < pos; i++){
+                nav = nav->proximo;
+            }
+            TElementoJogador *Apagar = nav->proximo;
+            nav->proximo = Apagar->proximo;
+            delete Apagar;
+        }
+    }
+
+}
+
 bool Contem_Item_LJogadores(TListaJogador &j, string nomeJogador){
     if(j.inicio == nullptr){
         return false;
@@ -105,7 +146,6 @@ bool Contem_Item_LJogadores(TListaJogador &j, string nomeJogador){
             nav = nav->proximo;
         }
     }
-
     return false;
 }
 
@@ -134,10 +174,10 @@ string Obter_Jogador_Posicao(TListaJogador &j, int pos){
 }
 
 int Descobrir_Indice_LJogador(TListaJogador &j, string nomeJogador){
-
     if (j.inicio == nullptr){
         return -1;
-    } else {
+    } 
+    else {
         int contador = 0;
         TElementoJogador * nav = j.inicio;
         while(nav != nullptr){
@@ -151,19 +191,31 @@ int Descobrir_Indice_LJogador(TListaJogador &j, string nomeJogador){
     return -1;
 }
 
+int Descobrir_Quantidade_Jogadores(TListaJogador &j){
+    int contador = 0;
+    if (j.inicio == nullptr){
+        return -1;
+    } 
+    else {
+        TElementoJogador * nav = j.inicio;
+        while(nav != nullptr){
+            contador++;
+            nav = nav->proximo;
+        }
+    }
+    return contador;
+}
+
 void DepurarLJogadores(TListaJogador l){
-  cout << "Depurando lista encadeada - Inicio: " << l.inicio << endl;
     int i = 0;
     for(TElementoJogador * nav = l.inicio; nav != nullptr; nav= nav->proximo){
-        cout << "&: " << nav << "- Lista [ " << i++ << " ]: " << nav->Jogador.nome << "  ";
+        cout << "O jogador " << nav->Jogador.nome << " Possui as cartas:  ";
         for (int j = 0; j < nav->Jogador.MaoJogador.quantidade; j++){
-            cout << nav->Jogador.MaoJogador.v[j] << "\t"; 
+            cout << endl << nav->Jogador.MaoJogador.v[j]; 
         }
+        cout << "\nTotalizando: " << nav->Jogador.SomaCartas << endl;
         cout << endl;
     }
 }
 
 #endif
-
-
-

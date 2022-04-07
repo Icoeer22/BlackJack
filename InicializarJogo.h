@@ -3,44 +3,80 @@
 #include "jogador.h"
 using namespace std;
 
+int verificar_vitoria(TListaJogador &j){
+    TElementoJogador * nav = j.inicio;
+    while(nav != nullptr){
+        if(nav->Jogador.SomaCartas == 21){
+            cout << "O jogador " << nav->Jogador.nome << " Ganhou!" << endl; 
+        } 
+        else{ 
+            if(nav->Jogador.SomaCartas > 21){
+                int indice_jogador = Descobrir_Indice_LJogador(j, nav->Jogador.nome);
+                Remover_Posicao_LJogadores(j,indice_jogador);
+                system("pause");
+                system("cls");
+            }
+        }
+        nav= nav->proximo;
+    }
+    
+    
+
+    if(j.inicio == NULL){
+        cout << "Não há vencedor";
+        system("pause");
+        system("cls");
+        return 0;
+    }
+
+}
+
+
+void Jogador_Jogando(TElementoJogador * &nav, TListaCarta &b){
+    TCarta CartaAuxiliar = Obter_Carta_Posicao(b,b.quantidade -1);
+    Remover_Final_LCarta(b);
+    Inserir_Final_LCartas(nav->Jogador.MaoJogador, CartaAuxiliar);
+    nav->Jogador.SomaCartas += CartaAuxiliar.valor;
+    cout << "-----------------------------------------------------------------------\n";
+    cout << "Jogador " << nav->Jogador.nome << " recebeu: " << nav->Jogador.MaoJogador << endl << endl;
+}
 
 void RodarJogo(TListaJogador &j, TListaCarta &b, int quantidade_jogadores){
-    int verificar = 0;
-   
+    bool verificar = false;
+
     //while(verificar != quantidade_jogadores ){
         TElementoJogador * nav = j.inicio;
-        while(nav != nullptr){
-            int soma_mao = 0;
-            for(int i = 0; i < nav->Jogador.MaoJogador.quantidade; i++){
-                soma_mao = soma_mao + nav->Jogador.MaoJogador.v[i].valor;
-            }
-            if(soma_mao < 17){
-                TCarta CartaAuxiliar = Obter_Carta_Posicao(b,b.quantidade -1);
-                Remover_Final_LCarta(b);
-                Inserir_Final_LCartas(nav->Jogador.MaoJogador, CartaAuxiliar);
-                verificar = verificar -1 ;
-            }
-            else{
-                verificar = verificar +1;
-                
-            }
-            nav= nav->proximo;
-        }
-            
-    //}
+        int contador = 0;
+        int agressividade = 0;
+        while(quantidade_jogadores > 0){
+            contador++;
+            cout << "\n-----------------------------------------------------------------------\n\n";
+            DepurarLJogadores(j);
+            cout << "-----------------------------------------------------------------------\n";
+
+            system("pause");
+            system("cls");
+
+
+            while(nav != nullptr){
+                int Indice_Jogador = Descobrir_Indice_LJogador(j, nav->Jogador.nome);
+                if(Indice_Jogador % 2 == 0){
+                    agressividade = 16;
+                } else {
+                    agressividade = 19;
+                }
+
+                if (nav->Jogador.SomaCartas < agressividade){
+                    Jogador_Jogando(nav, b);
+                    quantidade_jogadores = Descobrir_Quantidade_Jogadores(j);
+                    } else {
+                    quantidade_jogadores--;
+                }
+                nav = nav->proximo;
+            } 
+            nav = j.inicio;
+
+        }  
+    verificar_vitoria(j);
     DepurarLJogadores(j);
 }
-
-void Inicializar_Jogo(){
-    TListaCarta Baralho_Mesa;
-    Baralho_Mesa = Criar_Baralho();
-    Embaralhar(Baralho_Mesa);
-    //Imprimir_Lista_LCartas(Baralho_Mesa);
-    int quantidade_jogadores = 4;
-    TListaJogador Jogadores;
-    Jogadores = Criar_Jogadores(quantidade_jogadores);
-    Distribuir_Cartas(Baralho_Mesa, Jogadores);
-    //DepurarLJogadores(Jogadores,2);
-    RodarJogo(Jogadores,Baralho_Mesa,quantidade_jogadores);
-}
-
